@@ -27,15 +27,14 @@ class CalculateViewController: UIViewController {
   }
 
   @IBAction func calculatePressed(_ sender: UIButton) {
-    if let bill = billTextField.text {
-      if bill == "" { return }
+    guard let bill = billTextField.text else { return }
+    if bill == "" { return }
 
-      let total = Double(bill)!
-      let tip = getTip()
-      let split = splitNumberSelector.value
+    let total = Double(bill)!
+    let tip = getTip()
+    let split = splitNumberSelector.value
 
-      billPerPerson = (total + total * tip) / split
-    }
+    billPerPerson = (total + total * tip) / split
 
     performSegue(withIdentifier: "goToResults", sender: self)
   }
